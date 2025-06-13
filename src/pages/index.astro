@@ -1,7 +1,11 @@
 ---
-
 import Structure from "../layouts/Structure.astro";
+const title = "Pokémon Static Site with Astro"; 
+const resp = await fetch("https://pokeapi.co/api/v2/pokemon");
+const data = await resp.json();
+
+console.log(data);
 ---
-<Structure title="main">
-<h1 class="text-3xl text-orange-500">Astro</h1>
+<Structure title={title}>
+<h1 class="text-3xl">Astro</h1>
 </Structure>

@@ -1,11 +1,18 @@
 ---
+import type { PokemonListResponse } from "../interface/pokemon-list.response";
 import Structure from "../layouts/Structure.astro";
 const title = "Pokémon Static Site with Astro"; 
 const resp = await fetch("https://pokeapi.co/api/v2/pokemon");
-const data = await resp.json();
+const data = await resp.json() as PokemonListResponse;
 
 console.log(data);
 ---
 <Structure title={title}>
-<h1 class="text-3xl">Astro</h1>
+<h1 class="text-3xl">Listado de pokemones</h1>
+<hr>
+<section aria-label="Lista de Pokemones" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {data.results.map((pokemon)=> <ul>{pokemon.name}</ul>)}
+</section>
+
+<!-- "Key" is not used because it is a static site and it will not move -->
 </Structure>

@@ -1,11 +1,15 @@
 ---
-const{name, image} = Astro.props;
+
 interface Props {
     name: string;
-    image: string;
+    url: string;
 }
+const{name, url} = Astro.props;
+const id = url.split("/").at(-2);
+const imageSrc = `https://pokeapi.co/api/v2/pokemon/${id}/`
 ---
 
-<div>
-    <img src="{image}" alt="">
+<div class="rounded flex flex-col justify-center items-center p-2">
+    <img src={imageSrc} alt=`imagen del pokemon ${name} numero ${id} `>
+    <span>{name}</span>
 </div>
